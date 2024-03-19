@@ -159,5 +159,12 @@ export class AppComponent {
       show: true,
       bills: newBills,
     };
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      });
+    }, 100);
   }
 }
