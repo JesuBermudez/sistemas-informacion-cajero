@@ -1,0 +1,25 @@
+<section
+  class="absolute h-96 w-full left-0 -bottom-[500px] flex justify-center gap-6 p-8 text-slate-800 rounded-md backdrop-blur-sm bg-white/55"
+>
+  @for (items of bills; track $index;) {
+  <article class="h-64 flex flex-col items-center gap-4">
+    @if (items.length != 0) {
+    <h3 class="text-4xl font-bold">x{{ items.length }}</h3>
+    <div class="relative h-56 w-44">
+      @for (i of items; track $index) {
+      <img
+        [src]="imgs[i][0]"
+        [alt]="imgs[i][1]"
+        class="bill w-56 absolute shadow-md"
+        [style]="
+          'left: ' + ($index > 0 ? $index * (115 / items.length) : 0) + 'px'
+        "
+      />
+      }
+    </div>
+    }
+  </article>
+  } @empty {
+  <p>Loading...</p>
+  }
+</section>

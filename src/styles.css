@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark light;
+}
+
+html {
+  background-color: rgba(0, 183, 255, 0.65);
+  overflow-x: hidden;
+}
