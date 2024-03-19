@@ -37,6 +37,9 @@
             max="2700000"
             placeholder=" Ingrese monto"
             (change)="changeDynamic($event)"
+            (keyup.enter)="
+              changeState({ option: 'confirm', value: optionList[7].value })
+            "
           />
         </div>
         <div
