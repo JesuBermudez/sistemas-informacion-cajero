@@ -12,7 +12,9 @@
         [alt]="imgs[i][1]"
         class="bill w-56 absolute shadow-md"
         [style]="
-          'left: ' + ($index > 0 ? $index * (115 / items.length) : 0) + 'px'
+          'left: ' +
+          (items.length > 1 ? $index * (110 / items.length) : 40) +
+          'px'
         "
       />
       }

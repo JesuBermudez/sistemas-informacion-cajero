@@ -14,14 +14,7 @@ import { Component, Input } from '@angular/core';
       </div>
       <div id="bill-slot" class="w-4/5 h-6 mx-auto mt-3 bg-slate-500 "></div>
     </section>
-    @if (show) {
-    <app-show-bills [bills]="bills" [close]="close" />
-    }
   `,
   styleUrl: './bill-slot.component.css',
 })
-export class BillSlotComponent {
-  @Input({ required: true }) bills!: number[][];
-  @Input({ required: true }) show!: boolean;
-  @Input({ required: true }) close!: () => void;
-}
+export class BillSlotComponent {}

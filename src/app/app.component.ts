@@ -4,15 +4,15 @@ import { RouterOutlet } from '@angular/router';
 import { LeftOptionWithdrawComponent } from './components/option-withdraw/left-option-withdraw.component';
 import { RightOptionWithdrawComponent } from './components/option-withdraw/right-option-withdraw.component';
 import { BillSlotComponent } from './components/bill-slot/bill-slot.component';
+import { ShowBillsComponent } from './components/show-bills/show-bills.component';
+import validation from './services/validation';
+import withdraw from './services/withdraw';
 import {
   auxiliar,
   bill,
   option,
   state,
 } from './components/interfaces/interfaces';
-import { AlertComponent } from './components/alert/alert.component';
-import validation from './services/validation';
-import withdraw from './services/withdraw';
 
 @Component({
   selector: 'app-root',
@@ -23,13 +23,12 @@ import withdraw from './services/withdraw';
     LeftOptionWithdrawComponent,
     RightOptionWithdrawComponent,
     BillSlotComponent,
-    AlertComponent,
+    ShowBillsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  public alertComponent: auxiliar = { show: false, text: '' };
   public title: string = 'Selecciona el valor a retirar';
   public bills: bill = { show: false, bills: [] };
   public cashierState: state = { option: 'none', value: 0 };
@@ -59,9 +58,8 @@ export class AppComponent {
         }, 3100);
       }
     }
-    this.setTitle();
 
-    console.log(`${this.cashierState.option} - ${this.cashierState.value}`);
+    this.setTitle();
 
     this.optionList.map((op, i) => {
       switch (i) {
@@ -134,14 +132,6 @@ export class AppComponent {
     }
   }
 
-  closeAlert() {
-    this.alertComponent.show = false;
-  }
-
-  closeBills() {
-    this.bills.show = false;
-  }
-
   withdraw(): string {
     switch (validation(this.cashierState.value)) {
       case 'valid':
@@ -149,20 +139,14 @@ export class AppComponent {
         return 'continue';
 
       case 'min':
-        this.alertComponent.show = true;
-        this.alertComponent.text =
-          'Por favor, ingrese valores desde $10.000 en adelante.';
+        alert('Por favor, ingrese valores desde $10.000 en adelante.');
         return 'return';
       case 'max':
-        this.alertComponent.show = true;
-        this.alertComponent.text =
-          'Por favor, ingrese valores no mayores a $2.700.000.';
+        alert('Por favor, ingrese valores no mayores a $2.700.000.');
         return 'return';
 
       default:
-        this.alertComponent.show = true;
-        this.alertComponent.text =
-          'Por favor, ingrese valores validos, multiplos de $10.000.';
+        alert('Por favor, ingrese valores validos, multiplos de $10.000.');
         return 'return';
     }
   }
@@ -175,7 +159,5 @@ export class AppComponent {
       show: true,
       bills: newBills,
     };
-
-    console.log(this.bills);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-show-bills',
@@ -9,7 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ShowBillsComponent {
   @Input({ required: true }) bills!: number[][];
-  @Input({ required: true }) close!: () => void;
   public imgs: string[][] = [
     ['assets/anverso10000.png', 'Billete de 10k'],
     ['assets/anverso20000.png', 'Billete de 20k'],

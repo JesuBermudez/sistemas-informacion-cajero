@@ -66,9 +66,9 @@
         } }
       </article>
     </section>
-    <bill-slot [bills]="bills.bills" [show]="bills.show" [close]="closeBills" />
-    @if (alertComponent.show) {
-    <app-alert [text]="alertComponent.text" [close]="closeAlert()" />
+    <bill-slot />
+    @if (bills.show) {
+    <app-show-bills [bills]="bills.bills" />
     }
   </div>
 </main>
